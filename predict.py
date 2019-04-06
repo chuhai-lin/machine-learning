@@ -2,7 +2,7 @@ import os
 import config
 from data_loader import DataLoader
 from sklearn.externals import joblib
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score,classification_report
 from sklearn.model_selection import train_test_split
 
 
@@ -29,6 +29,8 @@ if __name__ == '__main__':
     # 训练模型
     pred = predict(x=x_test)
 
-    # 计算预测准确率
+    # 计算预测准确率、精确率、召回率和F1值
     acc = accuracy_score(y_test, pred)
+    report = classification_report(y_test,pred)
     print('预测准确率：{0}'.format(acc))
+    print(report)

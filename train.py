@@ -4,8 +4,9 @@ from data_loader import DataLoader
 from sklearn.externals import joblib
 from sklearn.linear_model import Perceptron
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import MultinomialNB,GaussianNB
 from sklearn.model_selection import train_test_split
-from config import perceptron_config,knn_config
+from config import perceptron_config,knn_config,bayes_config
 
 
 def train(x, y,
@@ -22,6 +23,11 @@ def train(x, y,
         model = KNeighborsClassifier(n_neighbors=knn_config.n_neighbors,
                                      algorithm=knn_config.algorithm,
                                      p=knn_config.p)
+    elif model_select == 'naive_bayes':
+        if bayes_config.classfier == 'gaussian':
+            model = GaussianNB()
+        elif bayes_config.classfier == 'multinomial':
+            model = MultinomialNB(alpha=bayes_config.alpha)
 
     # 训练模型
     model.fit(data.iloc[:, :-1], data.iloc[:, -1])
