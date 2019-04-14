@@ -1,7 +1,7 @@
 from easydict import EasyDict
 
 # ----公共参数----
-model_select = 'naive_bayes'  # 选取的模型，可选'perceptron'、'knn'、'naive_bayes'
+model_select = 'cart'  # 选取的模型，可选'perceptron'、'knn'、'naive_bayes','cart'
 save_model = True  # 是否保存模型
 save_path = './saves'  # 模型保存路径
 test_size = 0.1   # 测试集占比
@@ -23,4 +23,9 @@ bayes_config = EasyDict()
 bayes_config.classfier = 'gaussian'   # 当变量是离散型时，选择'multinomial',当特征变量是连续型时，则选择'gaussian'
 bayes_config.alpha = 1.0   # 平滑项，只有当classfier选择multinomial时才需要用到
 
+# ----CART决策树模型----
+cart_config = EasyDict()
+cart_config.max_depth = 5   # 树的最大深度
+cart_config.min_samples_leaf = 5   # 每个叶结点必须包括的最小的样本数量
+cart_config.draw_tree = True   # 适合绘制决策树
 

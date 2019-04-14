@@ -6,7 +6,8 @@ from sklearn.linear_model import Perceptron
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import MultinomialNB,GaussianNB
 from sklearn.model_selection import train_test_split
-from config import perceptron_config,knn_config,bayes_config
+from config import perceptron_config,knn_config,bayes_config,cart_config
+from models.tree import DecisionTreeClassifier
 
 
 def train(x, y,
@@ -28,6 +29,9 @@ def train(x, y,
             model = GaussianNB()
         elif bayes_config.classfier == 'multinomial':
             model = MultinomialNB(alpha=bayes_config.alpha)
+    elif model_select == 'cart':
+        model = DecisionTreeClassifier(max_depth=cart_config.max_depth,
+                                       min_samples_leaf=cart_config.min_samples_leaf)
 
     # 训练模型
     model.fit(data.iloc[:, :-1], data.iloc[:, -1])
@@ -38,6 +42,11 @@ def train(x, y,
         if not os.path.exists(model_path):
             os.makedirs(model_path)
         joblib.dump(model, os.path.join(model_path, 'model.model'))
+
+    # 是否绘制决策树，只有选择CART时才有效
+    if model_select == 'cart' and cart_config.draw_tree:
+        save_path = os.path.join(save_path, model_select,'tree.dot')
+        model.draw_tree(model, feature_names=data.iloc[:,:-1].columns.tolist(), save_path=save_path)
 
 
 if __name__ == '__main__':
