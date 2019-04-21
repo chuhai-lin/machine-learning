@@ -1,7 +1,7 @@
 from easydict import EasyDict
 
 # ----公共参数----
-model_select = 'cart'  # 选取的模型，可选'perceptron'、'knn'、'naive_bayes','cart'
+model_select = 'logistic'  # 选取的模型，可选'perceptron'、'knn'、'naive_bayes','cart','logistic'
 save_model = True  # 是否保存模型
 save_path = './saves'  # 模型保存路径
 test_size = 0.1   # 测试集占比
@@ -28,4 +28,8 @@ cart_config = EasyDict()
 cart_config.max_depth = 5   # 树的最大深度
 cart_config.min_samples_leaf = 5   # 每个叶结点必须包括的最小的样本数量
 cart_config.draw_tree = True   # 适合绘制决策树
+
+# ----Logistic回归模型----
+lr_config = EasyDict()
+lr_config.max_iter = 200
 

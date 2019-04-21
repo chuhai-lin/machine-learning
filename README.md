@@ -10,4 +10,7 @@
 请参见博客介绍：https://blog.csdn.net/linchuhai/article/details/89057502
 
 ## ID3、C4.5、CART决策树的原理
-请参加博客介绍：https://blog.csdn.net/linchuhai/article/details/89059802
+请参见博客介绍：https://blog.csdn.net/linchuhai/article/details/89059802
+
+## Logistic回归模型
+请参见博客介绍：https://blog.csdn.net/linchuhai/article/details/89434153
