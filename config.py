@@ -1,7 +1,7 @@
 from easydict import EasyDict
 
 # ----公共参数----
-model_select = 'logistic'  # 选取的模型，可选'perceptron'、'knn'、'naive_bayes','cart','logistic'
+model_select = 'max_entropy'  # 选取的模型，可选'perceptron'、'knn'、'naive_bayes','cart','logistic','max_entropy'
 save_model = True  # 是否保存模型
 save_path = './saves'  # 模型保存路径
 test_size = 0.1   # 测试集占比
@@ -31,5 +31,10 @@ cart_config.draw_tree = True   # 适合绘制决策树
 
 # ----Logistic回归模型----
 lr_config = EasyDict()
-lr_config.max_iter = 200
+lr_config.max_iter = 200   # 最大的迭代次数
+
+# ----Max_Entropy模型----
+max_entropy_config = EasyDict()
+max_entropy_config.eps = 0.005   # 参数收敛阈值
+max_entropy_config.maxiter = 1000   # 最大迭代次数
 

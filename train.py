@@ -2,12 +2,13 @@ import os
 import config
 from data_loader import DataLoader
 from sklearn.externals import joblib
-from sklearn.linear_model import Perceptron,LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import MultinomialNB,GaussianNB
-from sklearn.model_selection import train_test_split
-from config import perceptron_config,knn_config,bayes_config,cart_config,lr_config
+from models.max_entropy import MaxEntropy
 from models.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB,GaussianNB
+from sklearn.linear_model import Perceptron,LogisticRegression
+from config import perceptron_config,knn_config,bayes_config,cart_config,lr_config,max_entropy_config
 
 
 def train(x, y,
@@ -38,6 +39,9 @@ def train(x, y,
     # Logistic回归模型
     elif model_select == 'logistic':
         model = LogisticRegression(max_iter=lr_config.max_iter)
+    # 最大熵模型
+    elif model_select == 'max_entropy':
+        model = MaxEntropy(eps=max_entropy_config.eps,maxiter=max_entropy_config.maxiter)
 
     # 训练模型
     model.fit(data.iloc[:, :-1], data.iloc[:, -1])
