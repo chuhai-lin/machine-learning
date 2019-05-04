@@ -14,3 +14,6 @@
 
 ## Logistic回归模型
 请参见博客介绍：https://blog.csdn.net/linchuhai/article/details/89434153
+
+## 最大熵模型原理
+请参见博客介绍：https://blog.csdn.net/linchuhai/article/details/89739552
